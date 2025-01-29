@@ -43,12 +43,17 @@ Rayfield:Notify({
     Image = 4483362458,
 })
 
+
+local Player = game.Players.LocalPlayer
+local Mouse = Player:GetMouse()
+
+--- load rayfield here or sum idk
+
 local Toggle = Tab:CreateToggle({
-    Name = "Auto farm (You can't disable)",
+    Name = "Auto Farm",
     CurrentValue = false,
-    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Flag = "Auto farm",
     Callback = function(Value)
-        -- Código para executar o teleporte em loop
         local player = game.Players.LocalPlayer -- Referência ao jogador local
         local character = player.Character or player.CharacterAdded:Wait() -- Garante o personagem carregado
         local rootPart = character:WaitForChild("HumanoidRootPart") -- Parte principal do personagem
@@ -58,7 +63,14 @@ local Toggle = Tab:CreateToggle({
             wait(3)
         end
     end,
+    end,
 })
+
+local function switchToggle()
+    Toggle:Set(false)
+end
+
+Mouse.Button1Down:Connect(switchToggle)
 
 local Tab = Window:CreateTab("Discord", 4483362458)
 
